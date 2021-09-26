@@ -96,7 +96,7 @@ def get_text(field: GuiField) -> str:
         GuiField.framerate: {
             Language.english: "Maximum framerate",
             Language.french: "Nombre d'image par seconde maximum",
-            Language.german: "Bildfrequenz"
+            Language.german: "Maximale Bildfrequenz"
         },
         GuiField.audio_only: {
             Language.english: "Audio only",
@@ -121,7 +121,7 @@ def get_text(field: GuiField) -> str:
         GuiField.dl_unsupported_url: {
             Language.english: "Unsupported URL.",
             Language.french: "URL non supportée.",
-            Language.german: "URL nicht unterstützt"
+            Language.german: "URL nicht unterstützt."
         },
         GuiField.dl_error: {
             Language.english: "An error has occurred.",
@@ -136,7 +136,7 @@ def get_text(field: GuiField) -> str:
         GuiField.missing_output: {
             Language.english: "Select an output path.",
             Language.french: "Indiquez un dossier de destination.",
-            Language.german: "Wähle einen Zielordner"
+            Language.german: "Wähle einen Zielordner."
         },
         GuiField.ff_remux: {
             Language.english: "Remuxing",
@@ -158,7 +158,7 @@ def get_text(field: GuiField) -> str:
             # the language requires one before a colon
             Language.english: "Speed",
             Language.french: "Vitesse ",
-            Language.german: "Geschwindingkeit"
+            Language.german: "Geschwindigkeit"
         }
     }
     global current_language
