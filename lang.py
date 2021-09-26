@@ -86,7 +86,7 @@ def get_text(field: GuiField) -> str:
         GuiField.end: {
             Language.english: "End",
             Language.french: "Fin",
-            Language.german: "Ende
+            Language.german: "Ende"
         },
         GuiField.quality: {
             Language.english: "Maximum quality",
