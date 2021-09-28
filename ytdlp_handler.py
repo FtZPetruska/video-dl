@@ -5,6 +5,7 @@ import yt_dlp
 from quantiphy import Quantity
 
 from ffmpeg_handler import *
+from lang import GuiField, get_text
 
 CANCELED = False
 
@@ -19,7 +20,8 @@ def video_dl(values: Dict) -> None:
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         infos_ydl = ydl.extract_info(values["url"])
     ext = 'mp3' if values['AudioOnly'] else infos_ydl['ext']
-    full_path = os.path.splitext(ydl.prepare_filename(infos_ydl))[0] + '.' + ext
+    full_path = os.path.splitext(ydl.prepare_filename(infos_ydl))[
+        0] + '.' + ext
     if not values['AudioOnly']:
         post_process_dl(full_path, infos_ydl)
 
@@ -65,8 +67,9 @@ def download_progress_bar(d):
         downloaded = Quantity(d['downloaded_bytes'], 'B')
         total = Quantity(d['total_bytes'], 'B') if 'total_bytes' in d.keys(
         ) else Quantity(d['total_bytes_estimate'], 'B')
-        progress = Sg.OneLineProgressMeter('Downloading', downloaded, total, f'Downloading {media_type}', orientation='h',
-                                           no_titlebar=True, grab_anywhere=True)
+        progress = Sg.OneLineProgressMeter(get_text(GuiField.ytdlp_downloading), downloaded,
+                                           total, f'{get_text(GuiField.ytdlp_downloading)} {media_type}',
+                                           orientation='h', no_titlebar=True, grab_anywhere=True)
         if CANCELED or (not progress and downloaded < total):
             CANCELED = True
             raise ValueError

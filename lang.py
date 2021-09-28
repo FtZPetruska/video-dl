@@ -35,7 +35,7 @@ class GuiField(enum.Enum):
     ff_starting = enum.auto()
     ff_speed = enum.auto()
     cancel_button = enum.auto()
-
+    ytdlp_downloading = enum.auto()
 
 global _current_language
 
@@ -187,6 +187,12 @@ def get_text(field: GuiField) -> str:
             Language.french: "Annuler",
             Language.german: "",
             Language.spanish: "Cancelar"
+        },
+        GuiField.ytdlp_downloading: {
+            Language.english: "Downloading",
+            Language.french: "Téléchargement",
+            Language.german: "",
+            Language.spanish: "Descargando"
         }
     }
     return ui_text[field][_current_language]
