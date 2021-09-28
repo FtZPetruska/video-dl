@@ -185,13 +185,13 @@ def get_text(field: GuiField) -> str:
         GuiField.cancel_button: {
             Language.english: "Cancel",
             Language.french: "Annuler",
-            Language.german: "",
+            Language.german: "Abbrechen",
             Language.spanish: "Cancelar"
         },
         GuiField.ytdlp_downloading: {
             Language.english: "Downloading",
             Language.french: "Téléchargement",
-            Language.german: "",
+            Language.german: "Lade herunter",
             Language.spanish: "Descargando"
         }
     }
