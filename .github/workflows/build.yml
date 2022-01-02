@@ -15,8 +15,8 @@ jobs:
           - {
               name: MacOS,
               os: macos-latest,
-              pip-flags: "--compile --no-binary :all:",
-              pyinstaller-flags: "--target-arch universal2",
+              pyinstaller-flags: "--target-arch x86_64", # Should be replaced by 'universal2' once https://github.com/actions/python-versions/pull/114 is merged
+              # pip-flags: "--compile --no-binary :all:" uncomment when building for 'universal2'
             }
     runs-on: ${{ matrix.platform.os }}
     steps:
