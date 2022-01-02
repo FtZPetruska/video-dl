@@ -1,0 +1,42 @@
+name: Build and upload artifacts
+
+on:
+  - push
+
+jobs:
+  Build:
+    name: ${{ matrix.platform.name }}
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+          - { name: Windows, os: windows-latest }
+          - { name: Linux, os: ubuntu-latest }
+          - {
+              name: MacOS,
+              os: macos-latest,
+              pip-flags: "--compile --no-binary :all:",
+              pyinstaller-flags: "--target-arch universal2",
+            }
+    runs-on: ${{ matrix.platform.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install pyinstaller
+        run: |
+          pip install pyinstaller
+      - name: Intall project dependencies
+        run: |
+          pip install ${{ matrix.platform.pip-flags }} -r requirements.txt
+      - name: Run pyinstaller
+        run: |
+          pyinstaller -wF --icon=icon.ico --name=Video-dl ${{ matrix.platform.pyinstaller-flags }} gui.py
+      - name: Upload the result
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.platform.name }}
+          path: dist/*
+          if-no-files-found: error
